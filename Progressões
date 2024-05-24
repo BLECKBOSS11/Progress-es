@@ -1,0 +1,84 @@
+
+class ArithmeticProgression {
+    private long current;
+    private long increment;
+
+    public ArithmeticProgression(long increment) {
+        this.current = 0;
+        this.increment = increment;
+    }
+
+    public long next() {
+        long result = current;
+        current += increment;
+        return result;
+    }
+
+    public void restart() {
+        current = 0;
+}
+
+class GeometricProgression {
+    private long current;
+    private long base;
+
+    public GeometricProgression(long base) {
+        this.current = 1; // Começa a partir de 1 para progressões geométricas
+        this.base = base;
+    }
+
+    public long next() {
+        long result = current;
+        current *= base; // Multiplica pelo valor base para obter o próximo número
+        return result;
+    }
+
+    public void restart() {
+        current = 1; // Reinicia o próximo número para 1
+    }
+}
+
+class FibonacciProgression {
+    private long prev; // Valor anterior na sequência de Fibonacci
+    private long current; // Próximo número na progressão
+
+    public FibonacciProgression() {
+        this.prev = 0;
+        this.current = 1;
+    }
+
+    public long next() {
+        long result = prev;
+        long temp = prev;
+        prev = current;
+        current = prev + temp; // Soma dos dois últimos números para obter o próximo número
+        return result;
+    }
+
+    public void restart() {
+        prev = 0; // Reinicia o número anterior para 0
+        current = 1; // Reinicia o próximo número para 1
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ArithmeticProgression arithProg = new ArithmeticProgression(5);
+        for (int i = 0; i < 5; i++) {
+            System.out.print(arithProg.next() + " ");
+        }
+        System.out.println();
+
+        GeometricProgression geomProg = new GeometricProgression(2);
+        for (int i = 0; i < 5; i++) {
+            System.out.print(geomProg.next() + " ");
+        }
+        System.out.println();
+
+        FibonacciProgression fibProg = new FibonacciProgression();
+        for (int i = 0; i < 10; i++) {
+            System.out.print(fibProg.next() + " ");
+        }
+        System.out.println();
+    }
+}
